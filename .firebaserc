@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "chat-demo-ba610": {
+      "hosting": {
+        "chat-base": [
+          "chat-demo-ba610"
+        ]
+      }
+    }
+  }
+}
