@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/example.js": {
+    "src/api/example.js": {
       "memory": 1024,
       "maxDuration": 5
     }
