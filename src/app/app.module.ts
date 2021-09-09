@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     // AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
