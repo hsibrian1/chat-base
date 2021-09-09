@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable } from 'rxjs'
+import { environment } from 'src/environments/environment'
 import { StreamChat, ChannelData, Message, User } from 'stream-chat'
 
 @Injectable({
@@ -61,7 +62,6 @@ export class ChatsService {
     // if (this.newMessage.trim() === '') {
     //   return
     // }
-
     // try {
     //   await this.channel.sendMessage({
     //     text: this.newMessage
@@ -72,10 +72,19 @@ export class ChatsService {
     // }
   }
 
+  async connectUser(username: string, userToken: string): Promise<void> {
+    const chatClient = StreamChat.getInstance(environment.chatStreamAPIKey)
+    await chatClient.connectUser({
+      id: username,
+      name: `- -${username}- -`,
+      image: 'https://getstream.io/random_svg/?name=John'
+    }, userToken)
+  }
+
   createChannel(): Observable<Object> {
     return this.httpClient.post<Object>(`api/chat/init`, {
       userSender: 'Hemny',
-      userReciver: 'Saul'
+      userReceiver: 'Saul'
     })
   }
 

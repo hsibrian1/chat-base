@@ -5,11 +5,13 @@ export default async function init(req, res) {
   try {
     console.log(userSender, userReceiver)
     const serverClient = StreamChat.getInstance(
-      "fpdx7ab5gr6x",
-      "yrdtbb2cmcf42jad2b95vytnf9aym93dn3da3b9uuuqsg66hasundfseyc347dr5"
+      'fpdx7ab5gr6x',
+      'yrdtbb2cmcf42jad2b95vytnf9aym93dn3da3b9uuuqsg66hasundfseyc347dr5'
     )
-    const token = serverClient.createToken(userSender)
-    const response = await serverClient.upsertUsers([
+    const tokenSender = serverClient.createToken(userSender)
+    const tokenReceiver = serverClient.createToken(userReceiver)
+
+    await serverClient.upsertUsers([
       {
         id: userSender,
         role: 'admin',
