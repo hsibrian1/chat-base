@@ -1,1 +1,35 @@
-<p>home works!</p>
+<div class="grid w-screen h-screen p-0 m-0">
+  <div class="col-12" style="height: 7vh; background-color: rgb(35, 134, 221)">
+    Top Bar
+  </div>
+  <div class="grid col-12 md:col-12 p-0 m-0" style="height: 93vh">
+    <div
+      class="col-12 md:col-3 h-full"
+      style="background-color: rgb(46, 46, 37)"
+    >
+      Menu
+    </div>
+    <div
+      class="grid-nogutter col-12 md:col-9"
+      style="background-color: rgb(7, 138, 138)"
+    >
+      <div class="col" style="height: 90%; background-color: linen">
+        <span>...ListMessages</span>
+      </div>
+      <div
+        class="col"
+        style="height: 10%; background-color: rgba(236, 148, 59, 0.329)"
+      >
+        <textarea
+          class="md:col-12 text-2xl h-full"
+          rows="3"
+          (keyup)="onKeyup($event)"
+          (keydown)="onKeydown($event)"
+          pInputTextarea
+          style="border-radius: 5px; resize: none"
+          #boxMessage
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
