@@ -3,11 +3,10 @@ import { StreamChat } from 'stream-chat'
 export default async (req, res) => {
   const { userSender, userReceiver } = req.body
   try {
-    const serverClient = StreamChat.getInstance(
-      process.env.STREAM_CHAT_API_KEY,
-      process.env.STREAM_CHAT_SECRET_KEY
-    )
     console.log(
+      userSender, userReceiver
+    )
+    const serverClient = StreamChat.getInstance(
       process.env.STREAM_CHAT_API_KEY,
       process.env.STREAM_CHAT_SECRET_KEY
     )
@@ -37,6 +36,6 @@ export default async (req, res) => {
     res.json({ message: 'Success!' })
   } catch (e) {
     console.error(e)
-    res.status(e.status || 500).json(e)
+    res.status(e.status || 500).json(e.message || 'Que pasa vale?')
   }
 }
