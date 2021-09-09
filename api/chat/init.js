@@ -7,6 +7,10 @@ export default async (req, res) => {
       process.env.STREAM_CHAT_API_KEY,
       process.env.STREAM_CHAT_SECRET_KEY
     )
+    console.log(
+      process.env.STREAM_CHAT_API_KEY,
+      process.env.STREAM_CHAT_SECRET_KEY
+    )
     const token = serverClient.createToken(userSender)
     const response = await client.upsertUsers([
       {
@@ -22,7 +26,7 @@ export default async (req, res) => {
     ])
     const channel = serverClient.channel(
       `${userSender}-To-${userReceiver}`, // type
-      `${userSender}__${userReceiver}`, // Channel Id  
+      `${userSender}__${userReceiver}`, // Channel Id
       {
         name: 'Chat Base',
         created_by: { id: userSender }
