@@ -73,7 +73,7 @@ export class ChatsService {
   }
 
   createChannel(): Observable<Object> {
-    return this.httpClient.post<Object>(`${this.urlAPI}/chat/init`, {
+    return this.httpClient.post<Object>(`api/chat/init`, {
       userSender: 'Hemny',
       userReciver: 'Saul'
     })
