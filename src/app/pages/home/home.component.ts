@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
     this.chatService.messages$.subscribe((messages: string[]) => {
       console.log(messages)
     })
+    // this.chatService.listMessages(this.chatId).subscribe((docs) => {
+    //   console.log(docs[0].payload.doc.data())
+    // })
   }
 
   onKeyup(event: KeyboardEvent): void {

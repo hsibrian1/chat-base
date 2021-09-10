@@ -89,4 +89,8 @@ export class ChatsService {
       })
     })
   }
+
+  listMessages(chatId: string) {
+    return this.angularFirestore.collection<Chat>(`chats/${chatId}/messages`).snapshotChanges()
+  }
 }
