@@ -1,49 +1,57 @@
-// import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
+import {
+  AngularFireList,
+  AngularFireObject
+} from '@angular/fire/database'
+import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore'
+import { Observable } from 'rxjs'
+import { User } from '../models'
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class UserService {
-//   users: User[] = [];
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
 
-//   constructor() {
-//       let user = {
-//           userId: 1, userName: "admin", password: "password", emailId: "admin@admin.com", birthDate: new Date('10/28/1992')
-//       };
-//       this.users.push(user);
-//   }
+  constructor(private angularFirestore: AngularFirestore) {}
 
-//   /**
-//    * get user by user name and password
-//    * @param userName 
-//    * @param password 
-//    */
-//   getUserByUserNameAndPassword(userName: string, password: string): User {
-//       let user: User = null;
-//       this.users.forEach(element => {
-//           if (element.userName === userName && element.password === password) {
-//               user = element;
-//           }
-//       });
-//       return user;
-//   }
+  /**
+   * add new user
+   * @param user
+   */
+  async add(user: User): Promise<void> {
+    await this.angularFirestore
+    .collection<User>("users")
+    .add(user)
+  }
 
-//   /**
-//    * add new user
-//    * @param userName 
-//    * @param password 
-//    * @param emailId 
-//    * @param birthDate 
-//    */
-//   addUser(userName: string, password: string, emailId: string, birthDate: Date): boolean {
-//       let userId = this.users.length + 1;
-//       let user = new User();
-//       user.userId = userId;
-//       user.userName = userName;
-//       user.password = password;
-//       user.emailId = emailId;
-//       user.birthDate = birthDate;
-//       this.users.push(user);
-//       return true;
-//   }
-// }
+  /**
+   * get user by id name and password
+   * @param identification
+   */
+  get(identification: string): Observable<User | undefined> {
+    return this.angularFirestore
+    .collection<User>('users')
+    .doc(identification)
+    .valueChanges()
+  }
+
+  list(): Observable<DocumentChangeAction<User>[]> {
+    return this.angularFirestore
+    .collection<User>("users")
+    .snapshotChanges();
+  }
+
+  async update(user: User): Promise<void> {
+    await this.angularFirestore
+      .collection<User>("users")
+      .doc(user.identification)
+      .update(user);
+  }
+
+  async delete(identification: string): Promise<void> {
+    await this.angularFirestore
+      .collection("users")
+      .doc(identification)
+      .delete();
+  }
+}
