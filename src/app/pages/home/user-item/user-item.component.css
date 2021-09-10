@@ -1,0 +1,41 @@
+.user-item {
+  width: 100%;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1.5fr 3fr 1fr;
+  align-items: center;
+  padding: 10px 30px 10px 10px;
+  overflow: hidden;
+  border-radius: 5px 0px 0px 5px;
+  box-shadow: 0 5px 7px -1px rgba(117, 117, 117, 0.23);
+  cursor: pointer;
+  background-color: rgb(68, 67, 67);
+  font-size: 20px;
+}
+
+.user-item:hover {
+  box-shadow: 0 9px 20px 11px rgba(82, 80, 80, 0.651);
+  background-color: rgb(138, 134, 134);
+}
+
+img {
+  max-width: 100%;
+  width: 60px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 10px #ebeef3, 0 0 0 12px #f3f4f6;
+}
+
+.user-list-detail {
+  flex: 1 1 0;
+}
+
+.user-online-icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  color: rgb(0, 248, 0);
+}
+
+.user-category {
+  vertical-align: middle;
+  line-height: 1;
+}
