@@ -1,0 +1,29 @@
+.message {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.end {
+  justify-self: flex-end;
+  grid-column: 2/3;
+  background-color: rgb(221, 131, 221);
+  border-radius: 5px 5px 0px 5px;
+  box-shadow: 0 5px 7px -1px rgba(117, 117, 117, 0.23);
+  align-items: center;
+  padding: 10px 30px 10px 10px;
+  font-size: 20px;
+  margin: 5px;
+}
+
+.start {
+  justify-self: flex-start;
+  grid-column: 1/2;
+  background-color: rgb(221, 131, 221);
+  border-radius: 5px 5px 5px 0px;
+  box-shadow: 0 5px 7px -1px rgba(117, 117, 117, 0.23);
+  align-items: center;
+  padding: 10px 30px 10px 10px;
+  font-size: 20px;
+  margin: 5px;
+}

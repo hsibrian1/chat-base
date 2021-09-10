@@ -1,0 +1,9 @@
+<ul
+  class="scroll"
+  style="height: 75vh; max-height: 75vh; overflow: auto; list-style-type: none; padding: 0"
+>
+  <app-message-item
+    *ngFor="let message of messagesList"
+    [message]="message"
+  ></app-message-item>
+</ul>

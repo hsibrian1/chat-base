@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/app'
 export interface User {
   identification?: string
   username: string
@@ -8,7 +8,8 @@ export interface User {
 export interface Message {
   identification?: string
   message: string
-  sentAT: Date
+  sentAt: Date
+  userSended: string
 }
 
 export interface Chat {

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
+import { User } from 'src/app/models'
 import { ChatsService } from 'src/app/services/chats.service'
 
 @Component({
@@ -9,14 +10,15 @@ import { ChatsService } from 'src/app/services/chats.service'
 export class HomeComponent implements OnInit {
   @ViewChild('boxMessage') boxMessage!: ElementRef<HTMLInputElement>
   chatId = 'ojYHrXKAvdX4j1MdMyfa'
-  userId = ''
-  toUSerId = ''
+  userId = 'WyRzWxz1qj0zKj50CUxo'
+  toUSerId = 'WImfMZpoFkcUl5FX1U21'
+  chatSelected = false
   constructor(private chatService: ChatsService) {}
 
   ngOnInit(): void {
-    this.chatService.messages$.subscribe((messages: string[]) => {
-      console.log(messages)
-    })
+    // this.chatService.messages$.subscribe((messages: string[]) => {
+    //   console.log(messages)
+    // })
     // this.chatService.listMessages(this.chatId).subscribe((docs) => {
     //   console.log(docs[0].payload.doc.data())
     // })
@@ -28,7 +30,8 @@ export class HomeComponent implements OnInit {
       event.stopPropagation()
       this.chatService.sendMessage(
         this.chatId,
-        this.boxMessage.nativeElement.value
+        this.boxMessage.nativeElement.value,
+        this.userId
       )
       this.boxMessage.nativeElement.value = ''
     }
@@ -39,5 +42,10 @@ export class HomeComponent implements OnInit {
       event.preventDefault()
       event.stopPropagation()
     }
+  }
+
+  chatHasSelected(user: User) {
+    console.log(user)
+    this.chatSelected = true
   }
 }

@@ -1,20 +1,21 @@
 <div class="grid w-screen h-screen p-0 m-0">
   <div class="col-12" style="height: 7vh; background-color: rgb(35, 134, 221)">
-    ChatBase
+    Chat With Angular 12, Firebase and Vercel (Serverless)
   </div>
-  <div class="grid col-12 md:col-12 p-0 m-0" style="height: 93vh;">
+  <div class="grid col-12 md:col-12 p-0 m-0" style="height: 93vh">
     <div
       class="col-12 md:col-3 h-full"
-      style="color:linen; background-color: rgb(46, 46, 37)"
+      style="color: linen; background-color: rgb(46, 46, 37)"
     >
-      <app-user-list></app-user-list>
+      <app-user-list (selected)="chatHasSelected($event)"></app-user-list>
     </div>
     <div
+      *ngIf="chatSelected"
       class="grid-nogutter col-12 md:col-9"
-      style="background-color: rgb(7, 138, 138)"
+      style="background-color: rgb(7, 138, 138); height: 93vh;"
     >
-      <div class="col" style="height: 90%; background-color: linen">
-        <span>...ListMessages</span>
+      <div class="col" style="height: 85%; background-color: linen">
+        <app-message-list></app-message-list>
       </div>
       <div
         class="col"

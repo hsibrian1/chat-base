@@ -1,0 +1,7 @@
+<div class="message">
+    <div [ngClass]="{'end': message.userSended === userId, 'start': message.userSended !== userId}">
+        <p>
+            {{message.message}}
+        </p>
+    </div>
+</div>

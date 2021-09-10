@@ -19,17 +19,14 @@ export class ChatsService {
 
   async add(currentUser: string, toUser: string): Promise<void> {
     const chatId = this.angularFirestore.createId()
-    await this.angularFirestore
-      .collection<Chat>('chats')
-      .doc(chatId)
-      .set({
-        identification: chatId,
-        users: {
-          currentUser,
-          toUser
-        },
-        messages: []
-      })
+    await this.angularFirestore.collection<Chat>('chats').doc(chatId).set({
+      identification: chatId,
+      users: {
+        currentUser,
+        toUser
+      },
+      messages: []
+    })
     await this.angularFirestore
       .collection<User>('users')
       .doc(currentUser)
@@ -72,7 +69,7 @@ export class ChatsService {
     await this.angularFirestore.collection('chats').doc(identification).delete()
   }
 
-  async sendMessage(chatId: string, message: string) {
+  async sendMessage(chatId: string, message: string, userId: string) {
     const identification = this.angularFirestore.createId()
     return new Promise<void>((resolve, reject) => {
       this.get(chatId).subscribe(async (chat) => {
@@ -83,7 +80,8 @@ export class ChatsService {
           .set({
             message: message,
             identification: identification,
-            sentAT: new Date()
+            sentAt: new Date(),
+            userSended: userId
           })
         resolve()
       })
@@ -91,6 +89,8 @@ export class ChatsService {
   }
 
   listMessages(chatId: string) {
-    return this.angularFirestore.collection<Chat>(`chats/${chatId}/messages`).snapshotChanges()
+    return this.angularFirestore
+      .collection<Message>(`chats/${chatId}/messages`)
+      .snapshotChanges()
   }
 }
